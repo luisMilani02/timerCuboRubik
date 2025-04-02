@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer de cú do magico</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body onload="gerar()">
+    <div>
+        <h1 id="scramble"></h1>
+
+        <button id="gerador"> novo embaralhamento</button>
+    </div>
+    <h1 id="tempo">00:00</h1>
+
+    <select name="tipo de cubo" id="cubo" onchange="atualizouSelect()">
+        <option value="222">2x2</option>
+        <option selected value="333">3x3</option>
+        <option value="444">4x4</option>
+        <option value="555">5x5</option>
+        <option value="666">6x6</option>
+        <option value="777">7x7</option>
+        <option value="minx">megaminx</option>
+        <option value="sq1">square1</option>
+        <option value="pyram">pyraminx</option>
+        <option value="skewb">skewb</option>
+    </select>
+
+    <script src="js/teclas.js"></script>
+
+    <script type="module">
+        var tipo_cubo
+        function atualizouSelect() {
+            let select = document.getElementById('cubo')
+            let optionValue = select.options[select.selectedIndex]
+
+            let value = optionValue.value 
+            let text = optionValue.text
+
+            console.log(value, text)
+            tipo_cubo = value
+        }
+        
+        atualizouSelect()
+
+        import { randomScrambleForEvent } from "https://cdn.cubing.net/v0/js/cubing/scramble";
+
+        async function gerar() {
+            const scramble = await randomScrambleForEvent(tipo_cubo); 
+            console.log(scramble.toString());
+            document.getElementById("scramble").innerHTML = scramble.toString();
+        }
+
+        document.getElementById("gerador").addEventListener("click", gerar);
+
+        document.getElementById("cubo").addEventListener("change", atualizouSelect);
+        document.getElementById("cubo").addEventListener("change", gerar);
+
+        setTimeout(() => {
+            gerar()
+        }, 1);
+
+        document.addEventListener('newScrambleEvent', gerar);
+    </script>
+</body>
+</html>

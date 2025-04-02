@@ -1,0 +1,27 @@
+@font-face {
+    font-family: ionc;
+    src: url(IONC-Regular.ttf);
+}
+
+#tempo {
+    font-family: ionc;
+}
+
+th {
+    width: 100px;
+    background-color: aqua;
+}
+
+tr {
+    text-align: center;
+}
+
+button {
+    margin-right: 6px;
+    margin-left: 6px;
+    width: 35px;
+}
+
+#gerador {
+    width: 150px;
+}
