@@ -1,67 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timer de cú do magico</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
-<body onload="gerar()">
-    <div>
-        <h1 id="scramble"></h1>
+<body>
+    <header>
+        <div class="centralizaSc">
+            <h2 id="scramble"></h2>
+        </div>
+    </header>
 
-        <button id="gerador"> novo embaralhamento</button>
-    </div>
-    <h1 id="tempo">00:00</h1>
-
-    <select name="tipo de cubo" id="cubo" onchange="atualizouSelect()">
-        <option value="222">2x2</option>
-        <option selected value="333">3x3</option>
-        <option value="444">4x4</option>
-        <option value="555">5x5</option>
-        <option value="666">6x6</option>
-        <option value="777">7x7</option>
-        <option value="minx">megaminx</option>
-        <option value="sq1">square1</option>
-        <option value="pyram">pyraminx</option>
-        <option value="skewb">skewb</option>
-    </select>
-
-    <script src="js/teclas.js"></script>
-
-    <script type="module">
-        var tipo_cubo
-        function atualizouSelect() {
-            let select = document.getElementById('cubo')
-            let optionValue = select.options[select.selectedIndex]
-
-            let value = optionValue.value 
-            let text = optionValue.text
-
-            console.log(value, text)
-            tipo_cubo = value
-        }
+    <main>
         
-        atualizouSelect()
+        <section id="tabelas">
+            <div class="gerar">
+                <button id="deleteAll">X</button>
+                <button id="gerador">Embaralhar</button>
+                <select name="tipo de cubo" id="cubo" onchange="atualizouSelect()">
+                    <option value="222">2x2</option>
+                    <option selected value="333">3x3</option>
+                    <option value="444">4x4</option>
+                    <option value="555">5x5</option>
+                    <option value="666">6x6</option>
+                    <option value="777">7x7</option>
+                    <option value="minx">megaminx</option>
+                    <option value="sq1">square-1</option>
+                    <option value="pyram">pyraminx</option>
+                    <option value="skewb">skewb</option>
+                </select>
+            </div>
+            <table id="table">
 
-        import { randomScrambleForEvent } from "https://cdn.cubing.net/v0/js/cubing/scramble";
+            </table>
+        </section>
 
-        async function gerar() {
-            const scramble = await randomScrambleForEvent(tipo_cubo); 
-            console.log(scramble.toString());
-            document.getElementById("scramble").innerHTML = scramble.toString();
-        }
+        <div class="tempos">
+            <span class="tempo">
+                <h1 id="tempoMin">00</h1>
+            </span>
+            
+            <h2 class="dp" id="dpMin">:</h2>
+            
+            <span class="tempo">
+                <h1 id="tempoSec">00</h1>
+            </span>
+            
+            <h2 class="dp">:</h2>
 
-        document.getElementById("gerador").addEventListener("click", gerar);
+            <span class="tempo">
+                <h1 id="tempoMilisec">00</h1>
+            </span>
+        </div>
+    </main>
+    <script src="js/tempoKeys.js"></script>
 
-        document.getElementById("cubo").addEventListener("change", atualizouSelect);
-        document.getElementById("cubo").addEventListener("change", gerar);
-
-        setTimeout(() => {
-            gerar()
-        }, 1);
-
-        document.addEventListener('newScrambleEvent', gerar);
-    </script>
+    <script type="module" src="js/gerar.js"></script>
 </body>
 </html>
