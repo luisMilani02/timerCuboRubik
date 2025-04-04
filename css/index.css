@@ -47,12 +47,25 @@ button {
     margin-right: 6px;
     margin-left: 6px;
     width: 35px;
+    background-color: #172024;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+}
+
+td > button {
+    border: 0.5px solid rgba(220, 220, 220, 0.5);
+    padding: 4px;
 }
 
 select {
     text-align: center;
     width: 100px;
     height: 30px;
+    background-color: #172024;
+    color: white;
+    border: 0;
+    border-radius: 5px;
 }
 
 main {
