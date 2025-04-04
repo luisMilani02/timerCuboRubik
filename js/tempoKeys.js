@@ -172,12 +172,12 @@ document.addEventListener('keypress', Event => {
         } else {
             tempoCell.textContent = tempoCell.textContent.replace(" +2", "")
         }
-    } else if (Event.key == "d" || Event.key == "x") {
+    } else if (Event.key == "d" || Event.key == "x" || Event.key == "backspace" || Event.key == "delete") {
         tabelaTempos.removeChild(row);
         document.getElementById("tempoMin").textContent = "00"
         document.getElementById("tempoSec").textContent = "00"
         document.getElementById("tempoMilisec").textContent = "00"  
-    } else {
-
+    } else if (Event.key == "r") {
+        deletar()
     }
 })
