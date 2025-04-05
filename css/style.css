@@ -15,6 +15,7 @@ header {
     align-content: center;
     position: fixed;
     top: 0;
+    z-index: 9999;
 }
 
 body {
@@ -109,17 +110,15 @@ main {
 }
 
 .gerar {
-    left: 10px;
     top: 200px;
-    position: fixed;
+    position: relative;
 }
 
 table {
     margin-top: 0;
     margin-left: 0;
-    left: 10px;
-    top: 250px;
-    position: fixed;
+    top: 150px;
+    position: relative;
     z-index: 1;
 }
 
@@ -128,9 +127,8 @@ table {
     width: 50px;
 }
 
-#tabelas {
-    border-right: 1px solid white;
-    position: fixed;
+#tabelas { 
+    z-index: 800;
 }
 
 #gerador {

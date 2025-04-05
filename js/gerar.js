@@ -39,25 +39,3 @@ document.addEventListener('keydown', Event => {
         gerar()
     }
 })
-
-function verificaFont() {
-    let scrambleText = document.getElementById("scramble").innerHTML;
-    let comprimento = scrambleText.length;
-
-    let fontSize;
-
-    if (comprimento <= 60) {
-        fontSize = "1.8em";  
-    } else if (comprimento <= 140) {
-        fontSize = "1.2em";
-    } else if (comprimento <= 190) {
-        fontSize = "1em";
-    } else if (comprimento <= 305) {
-        fontSize = "1em"
-    } else {
-        fontSize = ".8em"
-    }
-
-    document.getElementById("scramble").style.fontSize = fontSize;
-
-}
