@@ -6,6 +6,51 @@
     }
 }
 
+@media (max-width: 500px) {
+    #gerador {
+        width: 100px;
+    }
+
+    td > button {
+        border: 0.5px solid rgba(220, 220, 220, 0.5);
+        padding: 2px;
+        width: 50%;
+    }
+}
+
+@media (max-width: 380px) {
+    #gerador {
+        width: 100px;
+    }
+
+    .gerar {
+        margin-bottom: 25px;
+    }
+
+    .dp {
+        margin: 0 5px;
+    }
+
+    .tempo > h1 {
+        font-size: 175%;
+    }
+
+    .tempo {
+        width: 85px;
+    }
+
+    #tempo {
+        width: 150px;
+    }
+
+    td > button {
+        border: 0.5px solid rgba(220, 220, 220, 0.5);
+        padding: 2px;
+        /* width: 50%; */
+    }
+}
+
+
 @media (max-width: 1100px) {
     #gerador {
         width: 90px;

@@ -58,6 +58,12 @@ deleta.addEventListener('click', function() {
     deletar()
     deleta.blur()
 })
+document.body.addEventListener('click', function(e) {
+    if (e.target.closest('table') || e.target.closest('button') || e.target.closest('select')) {
+        return;
+    }
+    teclado(e);
+});
 
 function teclado(e) {
     if (e.keyCode == 32) {
@@ -68,60 +74,19 @@ function teclado(e) {
             window.scrollTo(0, 0)
 
         } else {
-            window.scrollTo(0, 0)
-            
-            contando = false
-            clearInterval(interval)
+            executarTudo()
+        }   
 
+    } else {
+        if (contando == false) {
+            contando = true
+            interval = setInterval(tempo, 10)
             currentScrollPosition = window.screenY
+            window.scrollTo(0, 0)
 
-            row = document.createElement("tr")
-            tempoCell = document.createElement("td")
-            cuboCell = document.createElement("td")
-            acoesCell = document.createElement("td")
-
-            del = document.createElement("button")
-            del.textContent = "X"
-            maisDois = document.createElement("button")
-            maisDois.textContent = "+2"
-
-            del.onclick = function() {
-                tabelaTempos.removeChild(row)
-                document.getElementById("tempoMin").textContent = "00"
-                document.getElementById("tempoSec").textContent = "00"
-                document.getElementById("tempoMilisec").textContent = "00"
-            }
-
-            if (min == 0) {
-                tempoCell.textContent = sec + ':' + milisec
-            } else {
-                tempoCell.textContent = min + ':' + sec + ':' + milisec
-            }
-
-            maisDois.onclick = function () {
-                if (!tempoCell.textContent.includes("+2")) {
-                    tempoCell.textContent += " +2"
-                } else {
-                    tempoCell.textContent = tempoCell.textContent.replace(" +2", "")
-                }
-            }
-
-            cuboCell.textContent = tipo_cubo
-            acoesCell.appendChild(del)
-            acoesCell.appendChild(maisDois)
-
-            row.appendChild(tempoCell)
-            row.appendChild(cuboCell)
-            row.appendChild(acoesCell)
-
-            tabelaTempos.insertBefore(row, tabelaTempos.children[1])
-
-            triggerCustomEvent()
-
-            milisec = 0
-            sec = "0" + 0
-            min = "0" + 0
-        }
+        } else {
+            executarTudo()
+        }        
     }
 }
 
@@ -163,6 +128,62 @@ function tempo() {
         document.getElementById("tempoMilisec").textContent = milisec
         console.log(min + ':' + sec + ":" + milisec)
     }
+}
+
+function executarTudo() {
+    window.scrollTo(0, 0)
+            
+    contando = false
+    clearInterval(interval)
+
+    currentScrollPosition = window.screenY
+
+    row = document.createElement("tr")
+    tempoCell = document.createElement("td")
+    cuboCell = document.createElement("td")
+    acoesCell = document.createElement("td")
+
+    del = document.createElement("button")
+    del.textContent = "X"
+    maisDois = document.createElement("button")
+    maisDois.textContent = "+2"
+
+    del.onclick = function() {
+        tabelaTempos.removeChild(row)
+        document.getElementById("tempoMin").textContent = "00"
+        document.getElementById("tempoSec").textContent = "00"
+        document.getElementById("tempoMilisec").textContent = "00"
+    }
+
+    if (min == 0) {
+        tempoCell.textContent = sec + ':' + milisec
+    } else {
+        tempoCell.textContent = min + ':' + sec + ':' + milisec
+    }
+
+    maisDois.onclick = function () {
+        if (!tempoCell.textContent.includes("+2")) {
+            tempoCell.textContent += " +2"
+        } else {
+            tempoCell.textContent = tempoCell.textContent.replace(" +2", "")
+        }
+    }
+
+    cuboCell.textContent = tipo_cubo
+    acoesCell.appendChild(del)
+    acoesCell.appendChild(maisDois)
+
+    row.appendChild(tempoCell)
+    row.appendChild(cuboCell)
+    row.appendChild(acoesCell)
+
+    tabelaTempos.insertBefore(row, tabelaTempos.children[1])
+
+    triggerCustomEvent()
+
+    milisec = 0
+    sec = "0" + 0
+    min = "0" + 0
 }
 
 function deletar() {
